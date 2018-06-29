@@ -8,12 +8,12 @@
 //   console.log(response);
 // });
 
-var gifs = ["Ryan Gosling", "Bladerunner", "Cats"];
+var gifs = ["Fifth Element", "Bladerunner", "The Matrix", "2001 Space Oddessy", "Starship Troopers"];
 
 function displayGifInfo() {
   
   var gif = $(this).attr("data-name");
-  var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + gif + "&api_key=t7g7yUrxtzUTCzRMivzpDz0xgZcsHiDZ&limit=5";
+  var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gif + "&api_key=t7g7yUrxtzUTCzRMivzpDz0xgZcsHiDZ&limit=10";
 
   $.ajax({
     url: queryURL,
@@ -21,17 +21,22 @@ function displayGifInfo() {
   }).then(function(response) {
     console.log(response);
 
-      var gifDiv = $("<div class='gif'>");
+    var gifDiv = $("<div class='gif'>");
 
-      var title = response.data[0].title;
-      console.log(response.data[0].title);
-
-      var pOne = $("<p>").text("Title: " + title);
-
+    for (var i = 0; i < response.data.length; i++) {
+      var rating = response.data[i].rating;
+      console.log(rating);
+      var images = response.data[i].images.fixed_height.url;
+      console.log(images);
+      
+      var pOne = $("<p>").text("Rating: " + rating);
       gifDiv.append(pOne);
-
-      $("#gif-view").prepend(gifDiv);
-
+    
+      var gif = $("<img>").attr("src", images);
+      gifDiv.append(gif);
+    }
+  
+    $("#gif-view").prepend(gifDiv);
   });
 }
 
@@ -45,8 +50,8 @@ function renderButtons() {
     // Then dynamicaly generating buttons for each gif in the array
     // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
     var a = $("<button>");
-    // Adding a class of gif-btn to our button
-    a.addClass("gif-btn");
+    
+    a.addClass("btn btn-info");
     // Adding a data-attribute
     a.attr("data-name", gifs[i]);
     // Providing the initial button text
@@ -69,7 +74,7 @@ $("#add-gif").on("click", function(event) {
 });
 
 // Adding a click event listener to all elements with a class of "gif-btn"
-$(document).on("click", ".gif-btn", displayGifInfo);
+$(document).on("click", ".btn-info", displayGifInfo);
 
 // Calling the renderButtons function to display the intial buttons
 renderButtons();
