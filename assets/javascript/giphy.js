@@ -22,6 +22,9 @@ function displayGifInfo() {
     var apiResponse = response.data;
 //console log the response 
     console.log(apiResponse);
+//set variable to create a div to render the gifs
+  
+    
 //loop through response object 
     for (var i = 0; i < apiResponse.length; i++) {
 //set rating variable to hold the gif rating
@@ -40,6 +43,7 @@ function displayGifInfo() {
           <p>Rating: ${rating}</p>
         </div>
       `;
+
 
       // var image = $("<img>").attr({
       //   "src": gifStillUrl,
@@ -64,6 +68,9 @@ function displayGifInfo() {
           $(this).attr("data-state", "still");
         }
       });
+  
+    
+    
 
     $("#gif-view").prepend(image);
   }
@@ -95,12 +102,15 @@ $("#add-gif").on("click", function(event) {
   event.preventDefault();
   // This line grabs the input from the textbox
   var gif = $("#gif-input").val().trim();
-if(indexOf(gif) === -1 && gif) {
+  // if(indexOf(gif) === -1 && gif) {
   gifs.push(gif);
-} 
-else {
-  alert("enter valid button");
-}
+  // } 
+  // else {
+  // alert("enter valid button");
+  // }
+
+  
+
   // Calling renderButtons which handles the processing of our gif array
   renderButtons();
 });
