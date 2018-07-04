@@ -15,3 +15,7 @@ To get some kick ass gifs, duh!
 ## How users can get started with the project
 
 Visit [giphy-fun](https://gscoggin.github.io/giphy-fun/) to search for some Gifs
+
+## Check out my portfolio
+
+You can also find this project, along with a few other samples of my work on my [Work Portfolio Page](https://gscoggin.github.io/workPortfolio.html).
